@@ -1,13 +1,26 @@
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled, { css } from 'styled-components';
 //import { LayoutProps } from './type';
 
 export default function SideBar() {
+  const [visible, setVisible] = useState<boolean>(false);
+  const [url, setUrl] = useState<string>('https://');
+
+  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setVisible(!visible);
+  };
+
   return (
     <Section>
       <ButtonContainer>
-        <Button>URL 추가</Button>
-        <Button>이미지 추가</Button>
+        <Button type="button" onClick={handleButtonClick}>
+          URL 추가
+        </Button>
+        <Button type="button">이미지 추가</Button>
       </ButtonContainer>
+      <InputContainer visible={visible}>
+        <Input type="text" value={url}></Input>
+      </InputContainer>
       <ListContainer>
         <ListItem>abcd</ListItem>
       </ListContainer>
@@ -18,10 +31,10 @@ export default function SideBar() {
 const Section = styled.section`
   display: flex;
   flex-direction: column;
-  flex: none;
   width: 300px;
   background-color: #f7f7f7;
   border-right: 1px solid #c4c4c4;
+  align-items: center;
 `;
 
 const ButtonContainer = styled.div`
@@ -29,9 +42,7 @@ const ButtonContainer = styled.div`
   height: 30px;
   border-bottom: 0.2px solid #e5e5e5;
   box-shadow: 0 8px 10px -3px #e5e5e5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0 auto;
   padding: 10px;
 `;
 
@@ -46,14 +57,44 @@ const Button = styled.button`
 
 const ListContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
 `;
+
 const ListItem = styled.div`
   background-color: #ffffff;
   height: 100px;
-  width: 90%;
+  width: 100%;
   border-radius: 12px;
   margin: 13px;
   padding: 10px;
+`;
+
+interface InputContainerProps {
+  visible: boolean;
+}
+
+const InputContainer = styled.div`
+  ${({ visible }: InputContainerProps) => css`
+    top: ${visible ? '42px' : 0};
+    display: ${visible ? 'flex' : 'none'};
+  `}
+  width: 270px;
+  height: 30px;
+  position: absolute;
+  background-color: #ffffff;
+  border: 1.5px solid #e5e5e5;
+  transition: all 0.5s ease-in-out;
+  border-radius: 3px;
+  box-shadow: 1px 1px 5px #e5e5e5;
+
+  justify-content: center;
+  align-items: center;
+`;
+
+const Input = styled.input`
+  height: 18px;
+  background-color: #f0f0f0;
+  border: 1.5px solid #e5e5e5;
+  width: 95%;
+  border-radius: 3px;
 `;
