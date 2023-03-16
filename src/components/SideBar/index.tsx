@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
+import ListItem from '../ListItem';
 
 export default function SideBar() {
   const [visible, setVisible] = useState<boolean>(false);
@@ -47,7 +48,7 @@ export default function SideBar() {
         <Input type="text" value={url} onChange={handleURLInputChange}></Input>
       </InputContainer>
       <ListContainer>
-        <ListItem>abcd</ListItem>
+        <ListItem url={'테스트'} />
       </ListContainer>
     </Section>
   );
@@ -83,15 +84,6 @@ const Button = styled.button`
 const ListContainer = styled.div`
   display: flex;
   width: 100%;
-`;
-
-const ListItem = styled.div`
-  background-color: #ffffff;
-  height: 100px;
-  width: 100%;
-  border-radius: 12px;
-  margin: 13px;
-  padding: 10px;
 `;
 
 interface InputContainerProps {
