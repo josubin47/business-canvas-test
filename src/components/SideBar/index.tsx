@@ -7,14 +7,17 @@ export default function SideBar() {
       <ButtonContainer>
         <Button>URL 추가</Button>
         <Button>이미지 추가</Button>
-        <ListContainer></ListContainer>
       </ButtonContainer>
+      <ListContainer>
+        <ListItem>abcd</ListItem>
+      </ListContainer>
     </Section>
   );
 }
 
 const Section = styled.section`
   display: flex;
+  flex-direction: column;
   flex: none;
   width: 300px;
   background-color: #f7f7f7;
@@ -24,7 +27,6 @@ const Section = styled.section`
 const ButtonContainer = styled.div`
   background-color: #ffffff;
   height: 30px;
-  width: 100%;
   border-bottom: 0.2px solid #e5e5e5;
   box-shadow: 0 8px 10px -3px #e5e5e5;
   display: flex;
@@ -42,4 +44,16 @@ const Button = styled.button`
   margin: 0 5px;
 `;
 
-const ListContainer = styled.div``;
+const ListContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const ListItem = styled.div`
+  background-color: #ffffff;
+  height: 100px;
+  width: 90%;
+  border-radius: 12px;
+  margin: 13px;
+  padding: 10px;
+`;
