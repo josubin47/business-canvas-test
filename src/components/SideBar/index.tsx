@@ -10,6 +10,11 @@ export default function SideBar() {
     setVisible(!visible);
   };
 
+  const handleURLInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setUrl(value);
+  };
+
   const handleImageButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (inputRef.current) {
       inputRef.current.click();
@@ -39,7 +44,7 @@ export default function SideBar() {
         </Button>
       </ButtonContainer>
       <InputContainer visible={visible}>
-        <Input type="text" value={url}></Input>
+        <Input type="text" value={url} onChange={handleURLInputChange}></Input>
       </InputContainer>
       <ListContainer>
         <ListItem>abcd</ListItem>
