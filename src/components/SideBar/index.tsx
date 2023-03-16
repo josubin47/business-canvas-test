@@ -1,22 +1,42 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
-//import { LayoutProps } from './type';
 
 export default function SideBar() {
   const [visible, setVisible] = useState<boolean>(false);
   const [url, setUrl] = useState<string>('https://');
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleURLButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setVisible(!visible);
+  };
+
+  const handleImageButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (inputRef.current) {
+      inputRef.current.click();
+    }
+  };
+
+  const handleImageInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // todo
   };
 
   return (
     <Section>
       <ButtonContainer>
-        <Button type="button" onClick={handleButtonClick}>
+        <Button type="button" onClick={handleURLButtonClick}>
           URL 추가
         </Button>
-        <Button type="button">이미지 추가</Button>
+        <input
+          type="file"
+          multiple
+          accept=".png, .jpg"
+          ref={inputRef}
+          style={{ display: 'none' }}
+          onChange={handleImageInputChange}
+        />
+        <Button type="button" onClick={handleImageButtonClick}>
+          이미지 추가
+        </Button>
       </ButtonContainer>
       <InputContainer visible={visible}>
         <Input type="text" value={url}></Input>
