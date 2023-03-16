@@ -1,5 +1,5 @@
-export type ItemProps = {
+export interface ItemProps {
   url: string;
-};
+}
 
 export { ItemProps };
