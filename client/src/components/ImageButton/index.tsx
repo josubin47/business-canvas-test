@@ -38,18 +38,17 @@ export default function ImageButton({
       };
       resources.push(obj);
 
-      //id 값으로 파일 저장
-      formData.append(
-        'images',
-        files[i],
-        String(obj.id) + '.' + files[i].name.split('.').pop(),
-      );
+      formData.append('images', files[i], files[i].name);
 
       id++;
     }
 
     axios
-      .post(BASE_URL + '/image', formData)
+      .post(BASE_URL + '/image', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data; charset=utf-8',
+        },
+      })
       .then(res => {
         console.log(res.data);
         onAddResource(resources);
