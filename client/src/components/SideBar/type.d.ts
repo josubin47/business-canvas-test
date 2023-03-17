@@ -6,7 +6,7 @@ export interface SideBarProps {
   onAddResource: (param: Resource[]) => void;
   onUpdateResource: (param: Resource) => void;
   onDeleteResource: (id: number) => void;
-  onSelectedResource: (id: number) => void;
+  onSelectedResource: (id: number | null) => void;
 }
 
 export { SideBarProps };
