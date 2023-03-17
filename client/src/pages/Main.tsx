@@ -1,3 +1,4 @@
+import URLViewer from 'components/URLViewer';
 import useFilteredResource from 'hooks/useFilteredResource';
 import { useEffect, useState } from 'react';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
@@ -19,44 +20,51 @@ export default function Main() {
   const resourceHandler = useSetRecoilState(resourceState);
 
   // 리소스 선택
-  const handleSelectedResource = (id: number) => {
+  const handleSelectedResource = (id: number | null) => {
     const item = resource.find(item => item.id === id);
     return setSelectedResource(item ?? null);
   };
 
   // 리소스 추가
   const handleAddResource = (param: Resource[]) => {
-    resourceHandler([...resource, ...param]);
+    // 랜덤 딜레이
+    const delay = Math.floor(Math.random() * 700) + 300;
+    // 성공 확률
+    const isSuccess = Math.random() < 0.8;
+
+    setTimeout(() => {
+      if (isSuccess) {
+        resourceHandler([...resource, ...param]);
+      } else {
+        console.log('실패');
+      }
+    }, delay);
   };
 
   // 리소스 수정
   const handleUpdateResource = (param: Resource) => {
-    const filteredResourceItem = useFilteredResource(param.id);
+    const data = resource.find(item => item.id === param.id);
 
-    if (filteredResourceItem === undefined) {
+    if (!data) {
       return;
     }
 
     resourceHandler(
       resource.map(item => {
-        return item.id === filteredResourceItem.id
-          ? { ...item, value: filteredResourceItem.value }
-          : item;
+        return item.id === data.id ? { ...item, value: data.value } : item;
       }),
     );
   };
 
   // 리소스 삭제
   const handleDeleteResource = (id: number) => {
-    const filteredResourceItem = useFilteredResource(id);
+    const data = resource.find(item => item.id === id);
 
-    if (filteredResourceItem === undefined) {
+    if (!data) {
       return;
     }
 
-    resourceHandler(
-      resource.filter(item => item.id !== filteredResourceItem.id),
-    );
+    resourceHandler(resource.filter(item => item.id !== data.id));
   };
 
   useEffect(() => {
@@ -73,7 +81,10 @@ export default function Main() {
         onUpdateResource={handleUpdateResource}
         onSelectedResource={handleSelectedResource}
       />
-      <Viewer />
+      <Viewer
+        selectedResource={selectedResource}
+        onSelectedResource={handleSelectedResource}
+      />
     </FlexContainer>
   );
 }
