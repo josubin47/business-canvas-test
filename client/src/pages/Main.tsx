@@ -1,3 +1,4 @@
+import useFilteredResource from 'hooks/useFilteredResource';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import {
   Resource,
@@ -12,10 +13,6 @@ export default function Main() {
   const [resource, setResource] = useRecoilState<Resource[]>(resourceState);
   const resourceHandler = useSetRecoilState(resourceState);
 
-  const filteredResource = (id: number) => {
-    return useRecoilValue(filteredResourceState(id));
-  };
-
   // 리소스 추가
   const handleAddResource = (param: Resource[]) => {
     resourceHandler([...resource, ...param]);
@@ -23,7 +20,7 @@ export default function Main() {
 
   // 리소스 수정
   const handleUpdateResource = (param: Resource) => {
-    const filteredResourceItem = filteredResource(param.id);
+    const filteredResourceItem = useFilteredResource(param.id);
 
     if (filteredResourceItem === undefined) {
       return;
@@ -40,7 +37,7 @@ export default function Main() {
 
   // 리소스 삭제
   const handleDeleteResource = (id: number) => {
-    const filteredResourceItem = filteredResource(id);
+    const filteredResourceItem = useFilteredResource(id);
 
     if (filteredResourceItem === undefined) {
       return;
