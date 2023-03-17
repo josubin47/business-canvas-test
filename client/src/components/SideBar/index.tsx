@@ -1,5 +1,7 @@
 import ImageButton from 'components/ImageButton';
-import React, { useRef, useState } from 'react';
+import URLInput from 'components/URLInput';
+import useFilteredResource from 'hooks/useFilteredResource';
+import React, { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import ListItem from '../ListItem';
 import { SideBarProps } from './type';
@@ -11,15 +13,9 @@ export default function SideBar({
   onDeleteResource,
 }: SideBarProps) {
   const [visible, setVisible] = useState<boolean>(false);
-  const [url, setUrl] = useState<string>('https://');
 
   const handleURLButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setVisible(!visible);
-  };
-
-  const handleURLInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setUrl(value);
   };
 
   return (
@@ -30,11 +26,11 @@ export default function SideBar({
         </Button>
         <ImageButton resource={resource} onAddResource={onAddResource} />
       </ButtonContainer>
-      <InputContainer visible={visible}>
-        <Input type="text" value={url} onChange={handleURLInputChange}></Input>
-      </InputContainer>
+      <URLInput visible={visible} />
       <ListContainer>
-        <ListItem url={'테스트'} />
+        {resource.map(item => (
+          <ListItem key={item.id} resource={item} />
+        ))}
       </ListContainer>
     </Section>
   );
@@ -69,35 +65,6 @@ const Button = styled.button`
 
 const ListContainer = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
-`;
-
-interface InputContainerProps {
-  visible: boolean;
-}
-
-const InputContainer = styled.div`
-  ${({ visible }: InputContainerProps) => css`
-    top: ${visible ? '42px' : 0};
-    display: ${visible ? 'flex' : 'none'};
-  `}
-  width: 270px;
-  height: 30px;
-  position: absolute;
-  background-color: #ffffff;
-  border: 1.5px solid #e5e5e5;
-  transition: all 0.5s ease-in-out;
-  border-radius: 3px;
-  box-shadow: 1px 1px 5px #e5e5e5;
-
-  justify-content: center;
-  align-items: center;
-`;
-
-const Input = styled.input`
-  height: 18px;
-  background-color: #f0f0f0;
-  border: 1.5px solid #e5e5e5;
-  width: 95%;
-  border-radius: 3px;
 `;
