@@ -1,7 +1,5 @@
-import URLViewer from 'components/URLViewer';
-import useFilteredResource from 'hooks/useFilteredResource';
 import { useEffect, useState } from 'react';
-import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import {
   Resource,
   resourceState,
@@ -10,6 +8,9 @@ import {
 import styled from 'styled-components';
 import SideBar from '../components/SideBar';
 import Viewer from '../components/Viewer';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Main() {
   const [selectedResource, setSelectedResource] = useState<Resource | null>(
@@ -35,8 +36,13 @@ export default function Main() {
     setTimeout(() => {
       if (isSuccess) {
         resourceHandler([...resource, ...param]);
+        toast.success('리소스 등록 성공', {
+          position: 'bottom-right',
+        });
       } else {
-        console.log('실패');
+        toast.error('리소스 등록 실패', {
+          position: 'bottom-right',
+        });
       }
     }, delay);
   };
