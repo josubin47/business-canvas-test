@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ResourceType } from 'types/common';
 import { Input, InputContainer } from './style';
 import { URLInputProps } from './type';
 
@@ -10,12 +11,22 @@ export default function URLInput({
 }: URLInputProps) {
   const [url, setUrl] = useState<string>('https://');
 
+  const convertToEmbedUrl = (url: string) => {
+    const videoId = url.split('v=')[1];
+    return `https://www.youtube.com/embed/${videoId}`;
+  };
+
+  const isYoutubeLink = (url: string) => {
+    const regex = /^https?:\/\/(www\.)?youtube.com\/watch\?v=/;
+    return regex.test(url);
+  };
+
   const addURL = () => {
     onAddResource([
       {
         id: Math.max(...resource.map(item => item.id)) + 1,
         type: 'URL',
-        value: url,
+        value: isYoutubeLink(url) ? convertToEmbedUrl(url) : url,
       },
     ]);
     toggleVisible();

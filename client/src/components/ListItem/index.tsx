@@ -13,31 +13,12 @@ export default function ListItem({
 }: ItemProps) {
   const [value, setValue] = useState<string>('');
 
-  const convertToEmbedUrl = (url: string) => {
-    const videoId = url.split('v=')[1];
-    return `https://www.youtube.com/embed/${videoId}`;
-  };
-
-  const isYoutubeLink = (url: string) => {
-    const regex = /^https?:\/\/(www\.)?youtube.com\/watch\?v=/;
-    return regex.test(url);
-  };
-
-  const isURL = (type: ResourceType) => {
-    return type === 'URL';
-  };
-
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     onSelectedResource(resource.id);
   };
 
   useEffect(() => {
-    const { id, type, value } = resource;
-    if (isURL(type)) {
-      setValue(isYoutubeLink(value) ? convertToEmbedUrl(value) : value);
-    } else {
-      setValue(value);
-    }
+    setValue(resource.value);
   }, [value]);
 
   return (
