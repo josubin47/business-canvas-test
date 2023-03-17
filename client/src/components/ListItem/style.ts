@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { ItemStyleProps } from './type';
 
 const Item = styled.div`
   background-color: #ffffff;
@@ -13,6 +14,10 @@ const Item = styled.div`
   :hover {
     border: 1px solid gray;
   }
+
+  ${({ isSelected }: ItemStyleProps) => css`
+    border: ${isSelected ? '1px solid #0D99FF' : ''};
+  `}
 `;
 
 const TextField = styled.div`
