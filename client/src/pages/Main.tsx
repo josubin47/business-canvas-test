@@ -17,13 +17,8 @@ export default function Main() {
   };
 
   // 리소스 추가
-  const handleAddResource = (param: Resource) => {
-    const obj: Resource = {
-      id: Math.max(...resource.map(item => item.id)) + 1,
-      type: param.type,
-      value: param.value,
-    };
-    resourceHandler([...resource, obj]);
+  const handleAddResource = (param: Resource[]) => {
+    resourceHandler([...resource, ...param]);
   };
 
   // 리소스 수정
