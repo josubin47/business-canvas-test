@@ -1,5 +1,6 @@
 const cors = require("cors");
 const express = require("express");
+const path = require("path");
 const app = express();
 const multer = require("multer");
 
@@ -21,7 +22,8 @@ app.use(express.static("public"));
 // 파일 가져오기
 app.get("/image/:filename", function (req, res) {
   const fileName = req.params.filename;
-  res.sendFile(path.join(__dirname, `/public/upload/${fileName}`));
+  const directoryPath = path.join(__dirname, "public", "upload", fileName);
+  res.sendFile(directoryPath);
 });
 
 // 업로드
