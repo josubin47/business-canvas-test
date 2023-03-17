@@ -29,7 +29,12 @@ export default function SideBar({
         </Button>
         <ImageButton resource={resource} onAddResource={onAddResource} />
       </ButtonContainer>
-      <URLInput visible={visible} />
+      <URLInput
+        visible={visible}
+        toggleVisible={toggleVisible}
+        resource={resource}
+        onAddResource={onAddResource}
+      />
       <ListContainer>
         {resource.map(item => (
           <ListItem key={item.id} resource={item} />
