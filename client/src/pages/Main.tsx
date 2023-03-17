@@ -22,8 +22,9 @@ export default function Main() {
 
   // 리소스 선택
   const handleSelectedResource = (id: number | null) => {
-    const item = resource.find(item => item.id === id);
-    return setSelectedResource(item ?? null);
+    return id === null
+      ? setSelectedResource(null)
+      : setSelectedResource(findResourceById(id) ?? null);
   };
 
   // 리소스 추가
@@ -47,30 +48,25 @@ export default function Main() {
     }, delay);
   };
 
+  const findResourceById = (id: number) => {
+    return resource.find(item => item.id === id);
+  };
+
   // 리소스 수정
   const handleUpdateResource = (param: Resource) => {
-    const data = resource.find(item => item.id === param.id);
-
-    if (!data) {
-      return;
-    }
-
-    resourceHandler(
-      resource.map(item => {
-        return item.id === data.id ? { ...item, value: data.value } : item;
-      }),
-    );
+    const data = findResourceById(param.id);
+    data &&
+      resourceHandler(
+        resource.map(item => {
+          return item.id === data.id ? { ...item, value: data.value } : item;
+        }),
+      );
   };
 
   // 리소스 삭제
   const handleDeleteResource = (id: number) => {
-    const data = resource.find(item => item.id === id);
-
-    if (!data) {
-      return;
-    }
-
-    resourceHandler(resource.filter(item => item.id !== data.id));
+    const data = findResourceById(id);
+    data && resourceHandler(resource.filter(item => item.id !== data.id));
   };
 
   useEffect(() => {
