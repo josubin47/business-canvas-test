@@ -9,6 +9,10 @@ const Item = styled.div`
   position: relative;
   white-space: normal;
   height: 100px;
+
+  :hover {
+    border: 1px solid gray;
+  }
 `;
 
 const TextField = styled.div`
