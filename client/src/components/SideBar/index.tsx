@@ -36,9 +36,13 @@ export default function SideBar({
         onAddResource={onAddResource}
       />
       <ListContainer>
-        {resource.map(item => (
-          <ListItem key={item.id} resource={item} />
-        ))}
+        {[...resource]
+          .sort((a, b) => {
+            return b.id - a.id;
+          })
+          .map(item => (
+            <ListItem key={item.id} resource={item} />
+          ))}
       </ListContainer>
     </Section>
   );
