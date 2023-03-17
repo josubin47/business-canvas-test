@@ -1,9 +1,16 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { TypedIcon } from 'typed-design-system';
 import { ResourceType } from 'types/common';
-import { Item, TextField } from './style';
+import { Item, TextField, Button } from './style';
 import { ItemProps } from './type';
 
-export default function ListItem({ resource }: ItemProps) {
+export default function ListItem({
+  resource,
+  onUpdateResource,
+  onDeleteResource,
+  onSelectedResource,
+  isSelected,
+}: ItemProps) {
   const [value, setValue] = useState<string>('');
 
   const convertToEmbedUrl = (url: string) => {
@@ -20,6 +27,10 @@ export default function ListItem({ resource }: ItemProps) {
     return type === 'URL';
   };
 
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    onSelectedResource(resource.id);
+  };
+
   useEffect(() => {
     const { id, type, value } = resource;
     if (isURL(type)) {
@@ -30,7 +41,7 @@ export default function ListItem({ resource }: ItemProps) {
   }, [value]);
 
   return (
-    <Item>
+    <Item isSelected={isSelected} onClick={handleClick}>
       <TextField>{value}</TextField>
     </Item>
   );
