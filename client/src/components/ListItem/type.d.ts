@@ -1,5 +1,7 @@
+import { Resource } from 'recoil/resource';
+
 export interface ItemProps {
-  url: string;
+  resource: Resource;
 }
 
 export { ItemProps };
