@@ -8,13 +8,22 @@ import { SideBarProps } from './type';
 
 export default function SideBar({
   resource,
+  selectedResource,
   onAddResource,
   onUpdateResource,
   onDeleteResource,
+  onSelectedResource,
 }: SideBarProps) {
   const [visible, setVisible] = useState<boolean>(false);
 
   const toggleVisible = () => setVisible(!visible);
+
+  const isSelected = (id: number) => {
+    if (selectedResource === null) {
+      return false;
+    }
+    return selectedResource.id === id;
+  };
 
   return (
     <Section>
@@ -41,7 +50,14 @@ export default function SideBar({
             return b.id - a.id;
           })
           .map(item => (
-            <ListItem key={item.id} resource={item} />
+            <ListItem
+              key={item.id}
+              resource={item}
+              isSelected={isSelected(item.id)}
+              onSelectedResource={onSelectedResource}
+              onDeleteResource={onDeleteResource}
+              onUpdateResource={onUpdateResource}
+            />
           ))}
       </ListContainer>
     </Section>
