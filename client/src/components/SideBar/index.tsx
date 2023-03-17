@@ -14,14 +14,17 @@ export default function SideBar({
 }: SideBarProps) {
   const [visible, setVisible] = useState<boolean>(false);
 
-  const handleURLButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setVisible(!visible);
-  };
+  const toggleVisible = () => setVisible(!visible);
 
   return (
     <Section>
       <ButtonContainer>
-        <Button type="button" onClick={handleURLButtonClick}>
+        <Button
+          type="button"
+          onClick={e => {
+            toggleVisible();
+          }}
+        >
           URL 추가
         </Button>
         <ImageButton resource={resource} onAddResource={onAddResource} />
