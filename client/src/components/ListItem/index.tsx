@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ResourceType } from 'types/common';
-import { Item } from './style';
+import { Item, TextField } from './style';
 import { ItemProps } from './type';
 
 export default function ListItem({ resource }: ItemProps) {
@@ -29,5 +29,9 @@ export default function ListItem({ resource }: ItemProps) {
     }
   }, [value]);
 
-  return <Item>{value}</Item>;
+  return (
+    <Item>
+      <TextField>{value}</TextField>
+    </Item>
+  );
 }
