@@ -2,8 +2,14 @@ import ImageButton from 'components/ImageButton';
 import React, { useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import ListItem from '../ListItem';
+import { SideBarProps } from './type';
 
-export default function SideBar() {
+export default function SideBar({
+  resource,
+  onAddResource,
+  onUpdateResource,
+  onDeleteResource,
+}: SideBarProps) {
   const [visible, setVisible] = useState<boolean>(false);
   const [url, setUrl] = useState<string>('https://');
 
@@ -22,7 +28,7 @@ export default function SideBar() {
         <Button type="button" onClick={handleURLButtonClick}>
           URL 추가
         </Button>
-        <ImageButton />
+        <ImageButton resource={resource} onAddResource={onAddResource} />
       </ButtonContainer>
       <InputContainer visible={visible}>
         <Input type="text" value={url} onChange={handleURLInputChange}></Input>
