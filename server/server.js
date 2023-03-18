@@ -1,8 +1,15 @@
 const cors = require("cors");
 const express = require("express");
+const fs = require("fs");
 const path = require("path");
 const app = express();
 const multer = require("multer");
+
+const uploadDir = path.join(__dirname, "public", "upload");
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
