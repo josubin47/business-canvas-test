@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ImageViewerProps } from './type';
 import api from 'core/api';
+import { Image } from './style';
 
 export default function ImageViewer({ fileName }: ImageViewerProps) {
   const [imageUrl, setImageUrl] = useState('');
@@ -22,5 +23,5 @@ export default function ImageViewer({ fileName }: ImageViewerProps) {
     };
   }, [fileName]);
 
-  return <img src={imageUrl} alt={fileName} />;
+  return <Image src={imageUrl} alt={fileName} />;
 }
