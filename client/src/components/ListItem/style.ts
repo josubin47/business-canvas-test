@@ -34,12 +34,15 @@ const TextField = styled.div`
   white-space: normal;
 `;
 
-const Button = styled.button`
+const ButtonContainer = styled.div`
   position: absolute;
   bottom: 0;
   right: 0;
-  margin: 10px;
-  width: 50px;
+  width: 120px;
 `;
 
-export { Item, Button, TextField };
+const Button = styled.button`
+  margin: 5px;
+`;
+
+export { Item, Button, TextField, ButtonContainer };
