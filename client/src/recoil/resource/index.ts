@@ -21,7 +21,7 @@ export const resourceState = atom<Resource[]>({
       id: 2,
       type: 'URL',
       value: 'https://typed.do/blog-kr/how-to-make-good-usability-product/',
-      name: 'https://www.robinwieruch.de/react-libraries/',
+      name: 'https://typed.do/blog-kr/how-to-make-good-usability-product/',
     },
   ],
 });
