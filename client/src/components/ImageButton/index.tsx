@@ -55,7 +55,6 @@ export default function ImageButton({
       .catch(err => {
         console.log(err);
       });
-    onAddResource(resources);
   };
 
   return (
