@@ -12,43 +12,41 @@ business-canvas-test-app/
     // Node.js server files
 ```
 
-노드 서버와 리액트 클라이언트 앱의 코드가 각각 server / client 폴더에 나뉘어져 있는 구조입니다. README.md를 참고하여 서버 실행을 선행해야 클라이언트의 기능이 정상 동작합니다.
+노드 서버와 리액트 클라이언트 앱의 코드가 각각 server / client 폴더에 나뉘어져 있는 구조입니다.
+README.md를 참고하여 서버 실행을 선행해야 클라이언트의 기능이 정상 동작합니다.
 
 # 클라이언트 폴더 구조
 
 ```bash
 business-canvas-test-client/
   src/
-    components/
-		/Component
-			index.tsx
-			styles.ts
-			type.d.ts
-	core/
-	pages/
-		/Page
-	        Page.tsx
-			styles.ts
-			type.d.ts
-	recoil/
-		/state
-			state.ts
-	types/
+     components/
+      /Component
+	index.tsx
+	styles.ts
+	type.d.ts
+     core/
+     pages/
+       /Page
+	 Page.tsx
+	 styles.ts
+	 type.d.ts
+     recoil/
+       /state
+	 state.ts
+     types/
 ```
-
 # 서버 폴더 구조
 
 ```bash
 business-canvas-test-server/
   public/
     upload/
-        image.jpg
-		core/
-	server.js
+      image.jpg
+  server.js
 ```
 
 public : 리소스를 포함합니다. 현재는 upload폴더에 이미지를 저장하고 있습니다.
-
 server.js : 서버 파일입니다.
 
 # 기술 스택
