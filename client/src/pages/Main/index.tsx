@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { Resource, resourceState } from 'recoil/resource';
-import styled from 'styled-components';
-import SideBar from '../components/SideBar';
-import Viewer from '../components/Viewer';
+import SideBar from 'components/SideBar';
+import Viewer from 'components/Viewer';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FlexContainer } from './style';
 
 export default function Main() {
   const [selectedResource, setSelectedResource] = useState<Resource | null>(
@@ -82,8 +82,3 @@ export default function Main() {
     </FlexContainer>
   );
 }
-
-const FlexContainer = styled.div`
-  display: flex;
-  flex: 1;
-`;
