@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "server": "cd server && node server.js",
-    "client": "cd client && npm start"
+    "start-server": "cd server&& node server.js",
+    "start-client": "cd client && npm start"
+  },
+  "dependencies": {
+    "react-scripts": "^5.0.1"
   }
 }
