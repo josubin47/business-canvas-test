@@ -1,28 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { ImageViewerProps } from './type';
+import api from 'core/api';
 
 export default function ImageViewer({ fileName }: ImageViewerProps) {
   const [imageUrl, setImageUrl] = useState('');
 
-  useEffect(() => {
-    if (!fileName) {
-      return;
+  const fetchImage = async () => {
+    try {
+      const response = await api.getImage(fileName);
+      setImageUrl(URL.createObjectURL(response?.data));
+    } catch (error) {
+      console.log(error);
     }
-    const BASE_URL = 'http://localhost:5000';
+  };
 
-    const fetchImage = async () => {
-      try {
-        const response = await axios.get(BASE_URL + `/image/${fileName}`, {
-          responseType: 'blob',
-        });
-        const url = URL.createObjectURL(response.data);
-        setImageUrl(url);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchImage();
+  useEffect(() => {
+    fileName && fetchImage();
 
     return () => {
       URL.revokeObjectURL(imageUrl);
