@@ -22,11 +22,14 @@ export default function URLInput({
   };
 
   const addURL = () => {
+    const value = isYoutubeLink(url) ? convertToEmbedUrl(url) : url;
+
     onAddResource([
       {
         id: Math.max(...resource.map(item => item.id)) + 1,
         type: 'URL',
-        value: isYoutubeLink(url) ? convertToEmbedUrl(url) : url,
+        value: value,
+        name: value,
       },
     ]);
     toggleVisible();

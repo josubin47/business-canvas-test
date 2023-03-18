@@ -21,6 +21,7 @@ export default function ImageButton({
         id: id,
         type: 'IMAGE',
         value: files[i].name,
+        name: files[i].name,
       };
       resources.push(obj);
       formData.append('images', files[i], files[i].name);
