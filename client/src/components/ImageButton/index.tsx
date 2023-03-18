@@ -50,7 +50,7 @@ export default function ImageButton({
     await api
       .uploadImage(formData)
       .then(res => {
-        onAddResource(resources);
+        resources.forEach(item => onAddResource([item]));
       })
       .catch(err => {
         console.log(err);
