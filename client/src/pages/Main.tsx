@@ -1,15 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import {
-  Resource,
-  resourceState,
-  filteredResourceState,
-} from 'recoil/resource';
+import { Resource, resourceState } from 'recoil/resource';
 import styled from 'styled-components';
 import SideBar from '../components/SideBar';
 import Viewer from '../components/Viewer';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Main() {
@@ -58,7 +54,7 @@ export default function Main() {
     data &&
       resourceHandler(
         resource.map(item => {
-          return item.id === data.id ? { ...item, value: data.value } : item;
+          return item.id === data.id ? { ...item, value: data.name } : item;
         }),
       );
   };
@@ -68,10 +64,6 @@ export default function Main() {
     const data = findResourceById(id);
     data && resourceHandler(resource.filter(item => item.id !== data.id));
   };
-
-  useEffect(() => {
-    console.log(selectedResource);
-  }, [selectedResource]);
 
   return (
     <FlexContainer>

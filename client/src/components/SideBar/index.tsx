@@ -1,8 +1,7 @@
 import ImageButton from 'components/ImageButton';
 import URLInput from 'components/URLInput';
-import useFilteredResource from 'hooks/useFilteredResource';
-import React, { useEffect, useRef, useState } from 'react';
-import styled, { css } from 'styled-components';
+import { useState } from 'react';
+import styled from 'styled-components';
 import ListItem from '../ListItem';
 import { SideBarProps } from './type';
 

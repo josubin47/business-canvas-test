@@ -1,4 +1,4 @@
-import { atom, selectorFamily } from 'recoil';
+import { atom } from 'recoil';
 import { ResourceType } from 'types/common';
 
 export interface Resource {
@@ -24,17 +24,4 @@ export const resourceState = atom<Resource[]>({
       name: 'https://typed.do/blog-kr/how-to-make-good-usability-product/',
     },
   ],
-});
-
-export const filteredResourceState = selectorFamily({
-  key: 'filteredResourceState',
-  get:
-    (id: number) =>
-    ({ get }) => {
-      const resource = get(resourceState);
-
-      return resource.find(item => {
-        item.id === id;
-      });
-    },
 });

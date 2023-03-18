@@ -43,7 +43,6 @@ export default function URLInput({
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       addURL();
-      console.log('handleKeyDown');
     }
   };
 
