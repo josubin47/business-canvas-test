@@ -15,7 +15,7 @@ export default function Viewer({
   return (
     <Section>
       {selectedResource !== null && (
-        <Container>
+        <>
           <TopBar>
             <Title>{selectedResource.value}</Title>
             <Button onClick={handleButtonClick}>닫기</Button>
@@ -27,7 +27,7 @@ export default function Viewer({
               <ImageViewer fileName={selectedResource?.value} />
             )}
           </ViewerContainer>
-        </Container>
+        </>
       )}
     </Section>
   );
@@ -35,6 +35,8 @@ export default function Viewer({
 
 const Section = styled.section`
   flex: 1;
+  flex-direction: column;
+  height: 100vh;
 `;
 
 const TopBar = styled.section`
@@ -49,17 +51,13 @@ const TopBar = styled.section`
   align-items: center;
 `;
 
-const Container = styled.article`
-  display: flex;
-  flex-direction: column;
-`;
-
 const ViewerContainer = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 20px;
+  height: calc(100% - 100px);
 `;
 
 const Title = styled.div`
