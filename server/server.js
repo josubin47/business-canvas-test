@@ -5,7 +5,12 @@ const path = require("path");
 const app = express();
 const multer = require("multer");
 
-const uploadDir = path.join(__dirname, "public", "upload");
+const publicDir = path.join(__dirname, "public");
+const uploadDir = path.join(publicDir, "upload");
+
+if (!fs.existsSync(publicDir)) {
+  fs.mkdirSync(publicDir);
+}
 
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
