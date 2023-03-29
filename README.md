@@ -1,3 +1,21 @@
+# 설명
+
+리소스를 등록하고 뷰어를 통해 확인할 수 있는 앱입니다.
+
+# 기술 스택
+
+### **Front-end**
+
+- React
+- TypeScript
+- styled-component
+- Recoil
+
+### **Back-end**
+
+- Node.js
+- Express.js
+
 # How To Run
 
 서버와 클라이언트가 나뉘어져 있습니다. 반드시 서버를 먼저 실행하고 클라이언트 앱을 실행해주세요.
